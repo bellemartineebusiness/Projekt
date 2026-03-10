@@ -22,13 +22,12 @@ export default function Hero() {
   return (
     <section
       id="hem"
-      className="relative flex min-h-[112vh] items-center justify-center overflow-hidden pb-[140px]"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden pb-[60px]"
       style={{
         background:
           'linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #1a1a2e 100%)',
       }}
     >
-      {/* Decorative overlay */}
       <div
         className="absolute inset-0 opacity-20"
         style={{
@@ -42,12 +41,10 @@ export default function Hero() {
         }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto mt-16 max-w-4xl px-4 text-center sm:mt-20 sm:px-6">
-        {/* Brand logo */}
+      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
         <div className="mb-6 sm:mb-8">
           <Image
-            src="/logo-vertical-red.svg"
+            src="/lind.png"
             alt="Projektgaranti Stockholm AB"
             width={300}
             height={200}
@@ -56,13 +53,11 @@ export default function Hero() {
           />
         </div>
 
-        {/* Main heading */}
         <h1 className="mb-5 text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
           Professionell renovering i{' '}
           <span className="text-primary">Stockholmsområdet</span>
         </h1>
 
-        {/* Subheading */}
         <p className="mb-3 text-lg text-gray-300 sm:text-xl md:text-2xl">
           Med garanti och ROT-avdrag
         </p>
@@ -72,7 +67,6 @@ export default function Hero() {
           kvalitet du kan lita på.
         </p>
 
-        {/* CTA buttons */}
         <div className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
           <button
             onClick={() => scrollToSection('kontakt')}
@@ -90,10 +84,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <button
         onClick={() => scrollToSection('om-oss')}
-        className="group absolute bottom-12 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center text-white opacity-80 transition-all duration-300 hover:opacity-100"
+        className="group absolute bottom-24 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center text-white opacity-80 transition-all duration-300 hover:opacity-100"
         aria-label="Scroll down"
       >
         <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/40 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(255,255,255,0.35)]">

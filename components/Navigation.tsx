@@ -67,9 +67,8 @@ export default function Navigation() {
           className="flex-shrink-0"
           aria-label="Projektgaranti Stockholm AB – Till startsidan"
         >
-          <div className="relative h-[60px] w-[230px] sm:w-[260px] lg:w-[290px] overflow-visible">
-            <Image
-              src="/logo-horizontal-red.svg"
+<div className="relative h-[90px] w-[340px] sm:w-[380px] lg:w-[420px] overflow-visible">         <Image
+              src="/simon.png"
               alt="Projektgaranti Stockholm AB"
               fill
               priority
