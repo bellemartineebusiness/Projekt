@@ -26,13 +26,18 @@ export async function POST(request: NextRequest) {
     }
 
     // -----------------------------------------------------------------------
-    // TODO: Lägg till e-postutskick här.
-    // Alternativ:
-    //   • Resend  – https://resend.com  (npm install resend)
-    //   • Nodemailer med SMTP
-    //   • SendGrid
+    // TODO: Wire up email delivery here.  Do NOT log personal data (name,
+    // email, message) to the console or unaudited log streams.  Instead,
+    // forward the submission to one of the providers below and implement
+    // production-grade structured logging that complies with the
+    // data-retention policy (max 24 months).
     //
-    // Exempel med Resend:
+    // Example providers:
+    //   • Resend       – https://resend.com          (npm install resend)
+    //   • Nodemailer   – with SMTP / OAuth2
+    //   • SendGrid     – https://sendgrid.com
+    //
+    // Example with Resend (uncomment and fill in env vars):
     //
     //   import { Resend } from 'resend'
     //   const resend = new Resend(process.env.RESEND_API_KEY)
@@ -43,14 +48,6 @@ export async function POST(request: NextRequest) {
     //     text: `Namn: ${namn}\nE-post: ${email}\nTelefon: ${telefon ?? '–'}\n\n${meddelande}`,
     //   })
     // -----------------------------------------------------------------------
-
-    // Log server-side for now (remove in production once email is wired up)
-    console.log('[contact]', {
-      namn: namn.trim(),
-      email: email.trim(),
-      telefon: typeof telefon === 'string' ? telefon.trim() : '',
-      meddelandeLength: meddelande.trim().length,
-    })
 
     return NextResponse.json({ success: true }, { status: 200 })
   } catch (error) {
