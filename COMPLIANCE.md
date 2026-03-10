@@ -15,7 +15,8 @@ Denna fil dokumenterar de GDPR- och cookie-kompliansändringar som genomförts i
 | `lib/cookieGate.ts` | **Ny fil** – cookie-gating helper för externa skript |
 | `app/integritetspolicy/page.tsx` | Organisationsnummer (556717-4395), förbättrad cookiesektion med `cookie_consent`-detaljer, återkallningsinstruktioner, "Senast uppdaterad: 2026-03-10" |
 | `components/CookieBanner.tsx` | Knapptext "Återkalla / Spara val" för tydligare återkallningsmöjlighet |
-| `components/Footer.tsx` | Korrekt organisationsnummer (556717-4395) |
+| `app/api/contact/route.ts` | Removed `console.log` of personal data; replaced with safe placeholder comment for email provider wiring |
+| `app/layout.tsx` | Added gating comment explaining how to load external scripts (e.g. Google Maps) only after user consent |
 | `COMPLIANCE.md` | **Ny fil** – denna dokumentationsfil |
 
 ---
@@ -48,7 +49,9 @@ Använd denna funktion för alla framtida externa skript av typ analytics eller 
 
 Kontaktformuläret (`components/Contact.tsx` + `app/api/contact/route.ts`) är bevarat och orört.
 
-> ⚠️ **OBS för driftsansvarig:** `app/api/contact/route.ts` loggar formulärdata (namn, e-post, meddelandelängd) till serverns konsol/loggar med `console.log('[contact]', ...)`. Kontrollera att server-loggar och backuper inte innehåller okrypterad persondata och att lagringstider för loggar följer policyn (max 24 månader).
+Persondata (namn, e-post, telefon, meddelande) loggas **inte** längre till serverns konsol. `app/api/contact/route.ts` innehåller nu enbart en platshållarkommentar med instruktioner om hur man kopplar in en e-postleverantör (Resend/Nodemailer/SendGrid).
+
+> ⚠️ **OBS:** Formuläret validerar och accepterar inskickade uppgifter men **levererar dem inte** (skickar inget e-postmeddelande och sparar inget till databas) förrän en e-postleverantör kopplas in. Formuläret returnerar `{ success: true }` för att inte avslöja konfigurationsdetaljer för slutanvändaren, men ansvarig driftsättare måste implementera faktisk e-postleverans innan formuläret är produktionsklar.
 
 Uppgifterna som samlas in via formuläret är: namn, e-post, telefon (valfritt), meddelande, GDPR-samtycke. Rättslig grund: samtycke (GDPR art. 6.1 a). Lagringstid: 24 månader.
 
