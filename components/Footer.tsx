@@ -75,7 +75,13 @@ export default function Footer() {
             {/* TODO: Ersätt 559XXXXX-XXXX med faktiskt organisationsnummer innan publicering */}
             <p className="mt-1">Org.nr: 559XXXXX-XXXX &nbsp;|&nbsp; Innehar F-skattsedel &nbsp;|&nbsp; Innehar ROT-tillstånd</p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-end">
+            <Link
+              href="/villkor"
+              className="hover:text-gray-300 transition-colors underline underline-offset-2"
+            >
+              Villkor
+            </Link>
             <Link
               href="/integritetspolicy"
               className="hover:text-gray-300 transition-colors underline underline-offset-2"

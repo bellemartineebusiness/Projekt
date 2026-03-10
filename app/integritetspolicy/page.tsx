@@ -108,14 +108,46 @@ export default function IntegritetspolicyPage() {
           </p>
         </section>
 
-        {/* 5. Delning med tredje part */}
+        {/* 5. Tredjepartstjänster och delning */}
         <section className="mb-10">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">5. Delning med tredje part</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">5. Tredjepartstjänster och delning</h2>
+          <p className="text-gray-600 leading-relaxed mb-3">
+            Vi säljer aldrig dina personuppgifter. Webbplatsen använder följande tredjepartstjänster:
+          </p>
+          <div className="overflow-x-auto mb-4">
+            <table className="w-full text-sm text-gray-600 border-collapse">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="text-left py-3 px-4 font-semibold text-gray-700 border border-gray-200">Tjänst</th>
+                  <th className="text-left py-3 px-4 font-semibold text-gray-700 border border-gray-200">Syfte</th>
+                  <th className="text-left py-3 px-4 font-semibold text-gray-700 border border-gray-200">Dataplats</th>
+                  <th className="text-left py-3 px-4 font-semibold text-gray-700 border border-gray-200">Integritetspolicy</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="py-3 px-4 border border-gray-200 font-medium">Vercel</td>
+                  <td className="py-3 px-4 border border-gray-200">Hosting av webbplatsen</td>
+                  <td className="py-3 px-4 border border-gray-200">EU / USA (SCCs)</td>
+                  <td className="py-3 px-4 border border-gray-200">
+                    <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">vercel.com/legal/privacy-policy</a>
+                  </td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="py-3 px-4 border border-gray-200 font-medium">Google Maps</td>
+                  <td className="py-3 px-4 border border-gray-200">Kartvisning (laddas endast vid samtycke)</td>
+                  <td className="py-3 px-4 border border-gray-200">USA (SCCs)</td>
+                  <td className="py-3 px-4 border border-gray-200">
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">policies.google.com/privacy</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <p className="text-gray-600 leading-relaxed">
-            Vi säljer aldrig dina personuppgifter. Uppgifterna kan delas med underleverantörer som
-            hjälper oss att driva verksamheten (t.ex. e-posttjänst) under förutsättning att dessa
-            parter behandlar uppgifterna i enlighet med GDPR och ingått personuppgiftsbiträdesavtal
-            med oss. Uppgifterna överförs inte utanför EU/EES utan lämpliga skyddsåtgärder.
+            Alla tredjepartsleverantörer som behandlar personuppgifter för vår räkning har ingått
+            personuppgiftsbiträdesavtal och behandlar uppgifter i enlighet med GDPR. Vid överföring
+            utanför EU/EES tillämpas EU:s standardavtalsklausuler (SCCs) som lämplig skyddsåtgärd.
           </p>
         </section>
 
@@ -201,11 +233,17 @@ export default function IntegritetspolicyPage() {
         {/* 8. Säkerhet */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">8. Säkerhet</h2>
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-600 leading-relaxed mb-3">
             Vi vidtar lämpliga tekniska och organisatoriska åtgärder för att skydda dina
             personuppgifter mot obehörig åtkomst, förlust eller förstörelse i enlighet med GDPR
-            artikel 32.
+            artikel 32. Bland de åtgärder vi tillämpar ingår:
           </p>
+          <ul className="list-disc pl-6 text-gray-600 space-y-2">
+            <li>Krypterad överföring via HTTPS/TLS för all kommunikation med webbplatsen.</li>
+            <li>Webbplatsen körs på Vercels infrastruktur med inbyggda säkerhetsåtgärder.</li>
+            <li>Begränsad åtkomst till personuppgifter – enbart behörig personal har tillgång.</li>
+            <li>Formulärdata valideras och saneras på serversidan innan behandling.</li>
+          </ul>
         </section>
 
         {/* 9. Ändringar */}
