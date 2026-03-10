@@ -13,13 +13,62 @@ function useConsentAccepted() {
       const stored = getStoredConsent()
       setAccepted(stored?.status === 'accepted')
     }
+
     check()
     window.addEventListener('cookieConsentChanged', check)
+
     return () => window.removeEventListener('cookieConsentChanged', check)
   }, [])
 
   return accepted
 }
+
+const contactItems = [
+  {
+    icon: FaUser,
+    title: 'Kontaktperson',
+    content: (
+      <>
+        <p className="font-semibold text-gray-800">Joacim Lind</p>
+        <p className="text-secondary">Ansvarig Fastighet</p>
+      </>
+    ),
+  },
+  {
+    icon: FaPhone,
+    title: 'Telefon',
+    content: (
+      <a
+        href="tel:+46707401383"
+        className="font-semibold text-gray-800 transition-colors hover:text-primary"
+      >
+        +46 70 740 1383
+      </a>
+    ),
+  },
+  {
+    icon: FaEnvelope,
+    title: 'E-post',
+    content: (
+      <a
+        href="mailto:info@projektgarantiab.se"
+        className="font-semibold text-gray-800 transition-colors hover:text-primary break-all"
+      >
+        info@projektgarantiab.se
+      </a>
+    ),
+  },
+  {
+    icon: FaMapMarkerAlt,
+    title: 'Adress',
+    content: (
+      <>
+        <p className="font-semibold text-gray-800">Ekerövägen 51</p>
+        <p className="font-semibold text-gray-800">178 37 Ekerö</p>
+      </>
+    ),
+  },
+]
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -29,6 +78,7 @@ export default function Contact() {
     meddelande: '',
     gdprConsent: false,
   })
+
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
   const consentAccepted = useConsentAccepted()
@@ -44,6 +94,7 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
+
       const data = await res.json()
 
       if (!res.ok) {
@@ -53,7 +104,14 @@ export default function Contact() {
       }
 
       setStatus('success')
-      setFormData({ namn: '', email: '', telefon: '', meddelande: '', gdprConsent: false })
+      setFormData({
+        namn: '',
+        email: '',
+        telefon: '',
+        meddelande: '',
+        gdprConsent: false,
+      })
+
       setTimeout(() => setStatus('idle'), 8000)
     } catch (error) {
       console.error('Contact form submission error:', error)
@@ -64,6 +122,7 @@ export default function Contact() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
+
     if (type === 'checkbox') {
       setFormData({ ...formData, [name]: (e.target as HTMLInputElement).checked })
     } else {
@@ -72,98 +131,75 @@ export default function Contact() {
   }
 
   return (
-    <section id="kontakt" className="py-12 md:py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+    <section id="kontakt" className="bg-white py-12 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 text-center md:mb-16">
+          <h2 className="mb-4 text-2xl font-bold text-gray-800 sm:text-3xl md:text-4xl">
             Kontakta oss
           </h2>
-          <div className="w-16 h-1 bg-primary mx-auto mb-6" />
-          <p className="text-secondary text-base sm:text-lg max-w-2xl mx-auto">
+
+          <div className="mx-auto mb-6 h-1 w-16 rounded-full bg-primary" />
+
+          <p className="mx-auto max-w-2xl text-base text-secondary sm:text-lg">
             Ta kontakt för en kostnadsfri konsultation och offert på ditt projekt.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-          {/* Contact Info */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+          {/* Left side */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-800 mb-8">Kontaktinformation</h3>
+            <h3 className="mb-8 text-2xl font-bold text-gray-800">
+              Kontaktinformation
+            </h3>
 
-            <div className="space-y-6 mb-10">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary bg-opacity-10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <FaUser className="text-primary" size={20} />
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-800">Joacim Lind</p>
-                  <p className="text-secondary">Ansvarig Fastighet</p>
-                </div>
-              </div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              {contactItems.map((item) => {
+                const Icon = item.icon
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary bg-opacity-10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <FaPhone className="text-primary" size={20} />
-                </div>
-                <div>
-                  <p className="text-secondary text-sm mb-1">Telefon</p>
-                  <a
-                    href="tel:+46707401383"
-                    className="text-gray-800 font-semibold hover:text-primary transition-colors text-lg"
+                return (
+                  <div
+                    key={item.title}
+                    className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                   >
-                    +46 70 740 1383
-                  </a>
-                </div>
-              </div>
+                    <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white">
+                      <Icon size={24} />
+                    </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary bg-opacity-10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <FaEnvelope className="text-primary" size={20} />
-                </div>
-                <div>
-                  <p className="text-secondary text-sm mb-1">E-post</p>
-                  <a
-                    href="mailto:info@projektgarantiab.se"
-                    className="text-gray-800 font-semibold hover:text-primary transition-colors text-lg"
-                  >
-                    info@projektgarantiab.se
-                  </a>
-                </div>
-              </div>
+                    <h4 className="mb-2 text-lg font-bold text-gray-800">
+                      {item.title}
+                    </h4>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary bg-opacity-10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <FaMapMarkerAlt className="text-primary" size={20} />
-                </div>
-                <div>
-                  <p className="text-secondary text-sm mb-1">Adress</p>
-                  <p className="text-gray-800 font-semibold">Ekerövägen 51</p>
-                  <p className="text-gray-800 font-semibold">178 37 Ekerö</p>
-                </div>
-              </div>
+                    <div className="leading-relaxed text-secondary">{item.content}</div>
+                  </div>
+                )
+              })}
             </div>
 
-            {/* Google Maps embed – only loaded after cookie consent */}
-            <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+            <div className="mt-8 overflow-hidden rounded-xl border border-gray-200 shadow-sm">
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 {consentAccepted ? (
                   <iframe
-                    title="Projektgaranti Stockholm AB - Karta"
+                    title="Projektgaranti Stockholm AB karta"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2034.123456!2d17.814!3d59.278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f7da4a8b0c0ab%3A0x1!2sEker%C3%B6v%C3%A4gen+51%2C+178+37+Eker%C3%B6%2C+Sverige!5e0!3m2!1ssv!2sse!4v1700000000000!5m2!1ssv!2sse"
-                    className="absolute inset-0 w-full h-full"
+                    className="absolute inset-0 h-full w-full"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />
                 ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100 text-center px-4">
-                    <FaMapMarkerAlt size={28} className="text-gray-400 mb-3" />
-                    <p className="text-sm text-gray-600 mb-3">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100 px-4 text-center">
+                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white">
+                      <FaMapMarkerAlt size={22} />
+                    </div>
+
+                    <p className="mb-3 text-sm text-gray-600">
                       Kartan laddas inte utan ditt samtycke till cookies.
                     </p>
+
                     <button
                       onClick={() => window.dispatchEvent(new Event('openCookieSettings'))}
-                      className="text-sm text-primary underline hover:text-primary-dark transition-colors"
+                      className="text-sm text-primary underline transition-colors hover:text-primary-dark"
                     >
                       Hantera cookieinställningar
                     </button>
@@ -173,120 +209,124 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Right side */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-800 mb-8">Skicka ett meddelande</h3>
+            <h3 className="mb-8 text-2xl font-bold text-gray-800">
+              Skicka ett meddelande
+            </h3>
 
-            {status === 'success' && (
-              <div className="bg-green-50 border border-green-200 text-green-700 px-5 py-4 rounded-xl mb-6 font-medium">
-                ✓ Tack! Ditt meddelande har skickats. Vi återkommer inom kort.
-              </div>
-            )}
+            <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm md:p-7">
+              {status === 'success' && (
+                <div className="mb-6 rounded-xl border border-green-200 bg-green-50 px-5 py-4 font-medium text-green-700">
+                  ✓ Tack! Ditt meddelande har skickats. Vi återkommer inom kort.
+                </div>
+              )}
 
-            {status === 'error' && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-5 py-4 rounded-xl mb-6">
-                ✗ {errorMsg}
-              </div>
-            )}
+              {status === 'error' && (
+                <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-5 py-4 text-red-700">
+                  ✗ {errorMsg}
+                </div>
+              )}
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label htmlFor="namn" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Namn <span className="text-primary">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="namn"
-                  name="namn"
-                  required
-                  value={formData.namn}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="Ditt namn"
-                />
-              </div>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label htmlFor="namn" className="mb-2 block text-sm font-semibold text-gray-700">
+                    Namn <span className="text-primary">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="namn"
+                    name="namn"
+                    required
+                    value={formData.namn}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Ditt namn"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                  E-post <span className="text-primary">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="din@email.se"
-                />
-              </div>
+                <div>
+                  <label htmlFor="email" className="mb-2 block text-sm font-semibold text-gray-700">
+                    E-post <span className="text-primary">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="din@email.se"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="telefon" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Telefon
-                </label>
-                <input
-                  type="tel"
-                  id="telefon"
-                  name="telefon"
-                  value={formData.telefon}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="+46 70 000 0000"
-                />
-              </div>
+                <div>
+                  <label htmlFor="telefon" className="mb-2 block text-sm font-semibold text-gray-700">
+                    Telefon
+                  </label>
+                  <input
+                    type="tel"
+                    id="telefon"
+                    name="telefon"
+                    value={formData.telefon}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="+46 70 000 0000"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="meddelande" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Meddelande <span className="text-primary">*</span>
-                </label>
-                <textarea
-                  id="meddelande"
-                  name="meddelande"
-                  required
-                  rows={5}
-                  value={formData.meddelande}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
-                  placeholder="Berätta om ditt projekt..."
-                />
-              </div>
+                <div>
+                  <label htmlFor="meddelande" className="mb-2 block text-sm font-semibold text-gray-700">
+                    Meddelande <span className="text-primary">*</span>
+                  </label>
+                  <textarea
+                    id="meddelande"
+                    name="meddelande"
+                    required
+                    rows={5}
+                    value={formData.meddelande}
+                    onChange={handleChange}
+                    className="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Berätta om ditt projekt..."
+                  />
+                </div>
 
-              {/* GDPR Consent */}
-              <div className="flex items-start gap-3">
-                <input
-                  type="checkbox"
-                  id="gdprConsent"
-                  name="gdprConsent"
-                  required
-                  checked={formData.gdprConsent}
-                  onChange={handleChange}
-                  className="mt-1 h-4 w-4 flex-shrink-0 accent-primary"
-                />
-                <label htmlFor="gdprConsent" className="text-sm text-gray-600 leading-relaxed">
-                  Jag godkänner att Projektgaranti Stockholm AB behandlar mina personuppgifter för
-                  att besvara min förfrågan. Läs mer i vår{' '}
-                  <Link
-                    href="/integritetspolicy"
-                    className="text-primary underline hover:text-primary-dark"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    integritetspolicy
-                  </Link>
-                  . <span className="text-primary">*</span>
-                </label>
-              </div>
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="gdprConsent"
+                    name="gdprConsent"
+                    required
+                    checked={formData.gdprConsent}
+                    onChange={handleChange}
+                    className="mt-1 h-4 w-4 flex-shrink-0 accent-primary"
+                  />
 
-              <button
-                type="submit"
-                disabled={status === 'sending'}
-                className="w-full bg-primary text-white px-6 py-4 rounded-lg font-semibold text-lg hover:bg-primary-dark transition-colors duration-200 shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {status === 'sending' ? 'Skickar...' : 'Skicka meddelande'}
-              </button>
-            </form>
+                  <label htmlFor="gdprConsent" className="text-sm leading-relaxed text-gray-600">
+                    Jag godkänner att Projektgaranti Stockholm AB behandlar mina personuppgifter för
+                    att besvara min förfrågan. Läs mer i vår{' '}
+                    <Link
+                      href="/integritetspolicy"
+                      className="text-primary underline transition-colors hover:text-primary-dark"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      integritetspolicy
+                    </Link>
+                    . <span className="text-primary">*</span>
+                  </label>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={status === 'sending'}
+                  className="w-full rounded-lg bg-primary px-6 py-4 text-lg font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {status === 'sending' ? 'Skickar...' : 'Skicka meddelande'}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

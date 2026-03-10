@@ -4,49 +4,61 @@ const features = [
   {
     icon: FaStar,
     title: 'Kvalitet',
-    description: 'Vi använder enbart material av högsta kvalitet och lever upp till branschens krav.',
+    description:
+      'Vi använder enbart material av högsta kvalitet och lever upp till branschens krav.',
   },
   {
     icon: FaHandshake,
     title: 'Pålitlighet',
-    description: 'Vi håller det vi lovar – tidsplaner, budgetar och kvalitetsstandarder.',
+    description:
+      'Vi håller det vi lovar – tidsplaner, budgetar och kvalitetsstandarder.',
   },
   {
     icon: FaAward,
     title: 'Erfarenhet',
-    description: 'Över 10 år i branschen ger oss erfarenheten att hantera alla typer av projekt.',
+    description:
+      'Över 10 år i branschen ger oss erfarenheten att hantera alla typer av projekt.',
   },
 ]
 
 export default function About() {
   return (
-    <section id="om-oss" className="py-12 md:py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+    <section id="om-oss" className="bg-white py-12 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 text-center md:mb-16">
+          <h2 className="mb-4 text-2xl font-bold text-gray-800 sm:text-3xl md:text-4xl">
             Om Projektgaranti Stockholm AB
           </h2>
-          <div className="w-16 h-1 bg-primary mx-auto mb-6" />
-          <p className="text-secondary text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-            Vi är ett etablerat byggföretag i Stockholmsområdet med lång erfarenhet av renovering och
-            ombyggnation. Våra erfarna hantverkare levererar kvalitetsarbete med garanti. Vi hjälper
-            dig från planering till färdigt projekt.
+
+          <div className="mx-auto mb-6 h-1 w-16 bg-primary" />
+
+          <p className="mx-auto max-w-3xl text-base leading-relaxed text-secondary sm:text-lg">
+            Vi är ett etablerat byggföretag i Stockholmsområdet med lång erfarenhet av
+            renovering och ombyggnation. Våra erfarna hantverkare levererar kvalitetsarbete
+            med garanti. Vi hjälper dig från planering till färdigt projekt.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-8">
           {features.map((feature) => {
             const Icon = feature.icon
+
             return (
               <div
                 key={feature.title}
-                className="text-center p-6 md:p-8 rounded-xl bg-card-bg hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+                className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-8"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary bg-opacity-10 rounded-full mb-5">
-                  <Icon className="text-primary" size={28} />
+                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white">
+                  <Icon size={26} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">{feature.title}</h3>
-                <p className="text-secondary leading-relaxed">{feature.description}</p>
+
+                <h3 className="mb-3 text-xl font-bold text-gray-800">
+                  {feature.title}
+                </h3>
+
+                <p className="leading-relaxed text-secondary">
+                  {feature.description}
+                </p>
               </div>
             )
           })}
