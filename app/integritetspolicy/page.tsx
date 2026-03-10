@@ -97,58 +97,110 @@ export default function IntegritetspolicyPage() {
           </div>
         </section>
 
-        {/* 4. Lagring och radering */}
+        {/* 4. Samtyckeslogg och bevisföring */}
         <section className="mb-10">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">4. Lagring och radering</h2>
-          <p className="text-gray-600 leading-relaxed">
-            Uppgifter som lämnats via kontaktformuläret sparas under den tid som krävs för att
-            hantera din förfrågan, och raderas senast 24 månader efter sista kontakten om inget
-            avtal ingåtts. Uppgifter kopplade till avtal och fakturering sparas i enlighet med
-            bokföringslagen (7 år).
-          </p>
-        </section>
-
-        {/* 5. Delning med tredje part */}
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">5. Delning med tredje part</h2>
-          <p className="text-gray-600 leading-relaxed">
-            Vi säljer aldrig dina personuppgifter. Uppgifterna kan delas med underleverantörer som
-            hjälper oss att driva verksamheten (t.ex. e-posttjänst) under förutsättning att dessa
-            parter behandlar uppgifterna i enlighet med GDPR och ingått personuppgiftsbiträdesavtal
-            med oss. Uppgifterna överförs inte utanför EU/EES utan lämpliga skyddsåtgärder.
-          </p>
-        </section>
-
-        {/* 6. Dina rättigheter */}
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">6. Dina rättigheter</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">4. Samtyckeslogg och bevisföring</h2>
           <p className="text-gray-600 leading-relaxed mb-3">
-            Enligt GDPR har du rätt att:
+            När du lämnar ett samtycke till cookies och/eller andra behandlingar registreras detta i
+            din webbläsare i <code className="bg-gray-100 px-1 rounded text-sm">cookie_consent</code>.
+            För att kunna visa att ett giltigt samtycke lämnats och för revisionsändamål för vi även
+            en server&#8209;baserad samtyckeslogg.
           </p>
-          <ul className="list-disc pl-6 text-gray-600 space-y-2">
-            <li><strong>Få tillgång</strong> till de uppgifter vi behandlar om dig.</li>
-            <li><strong>Begära rättelse</strong> av felaktiga uppgifter.</li>
-            <li><strong>Begära radering</strong> (&quot;rätten att bli glömd&quot;) när uppgifterna inte längre behövs.</li>
-            <li><strong>Begära begränsning</strong> av behandlingen under vissa omständigheter.</li>
-            <li><strong>Invända</strong> mot behandling som grundas på berättigat intresse.</li>
-            <li><strong>Återkalla samtycke</strong> när som helst, utan att det påverkar lagenligheten av tidigare behandling.</li>
-            <li><strong>Dataportabilitet</strong> – att få ut dina uppgifter i ett strukturerat, maskinläsbart format.</li>
+          <p className="text-gray-600 leading-relaxed mb-3">
+            Den serverbaserade loggen innehåller:
+          </p>
+          <ul className="list-disc pl-6 text-gray-600 space-y-1 mb-3">
+            <li>Datum och tidpunkt för samtycket</li>
+            <li>Samtyckets version</li>
+            <li>Vilka cookie&#8209;kategorier eller behandlingar som godkändes (t.ex. nödvändiga, analys, marknadsföring)</li>
+            <li>En anonymiserad klientindikator (t.ex. en hash av användaragent och del av IP) för teknisk felsökning</li>
           </ul>
-          <p className="text-gray-600 leading-relaxed mt-4">
-            För att utöva dina rättigheter kontaktar du oss på{' '}
+          <p className="text-gray-600 leading-relaxed">
+            Vi lagrar dessa samtyckesposter i upp till 36 månader för att kunna bevisa giltigheten
+            av samtycket vid exempelvis tillsyn eller tvist. Om du vill ha en kopia av ditt samtycke
+            eller begära komplettering/ändring av informationen kan du kontakta oss via e&#8209;post:{' '}
             <a href="mailto:info@projektgarantiab.se" className="text-primary hover:underline">
               info@projektgarantiab.se
             </a>
-            . Du har även rätt att lämna klagomål till{' '}
-            <a
-              href="https://www.imy.se"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              Integritetsskyddsmyndigheten (IMY)
-            </a>
             .
+          </p>
+        </section>
+
+        {/* 5. Återkallande och ändring av samtycke */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">5. Återkallande och ändring av samtycke</h2>
+          <p className="text-gray-600 leading-relaxed mb-3">
+            Du kan när som helst ändra eller återkalla ditt samtycke. När du ändrar eller återkallar
+            ett samtycke gäller följande:
+          </p>
+          <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-3">
+            <li>Ändringen träder i kraft omedelbart för framtida behandlingar.</li>
+            <li>
+              Vi tar bort eller upphör med att köra icke&#8209;nödvändiga skript och tjänster från
+              och med ändringen (t.ex. analys eller marknadsföringsverktyg).
+            </li>
+            <li>
+              Eventuella redan genomförda behandlingar baserade på ett tidigare giltigt samtycke
+              påverkas inte retroaktivt, men du kan begära radering av tidigare insamlad data genom
+              att kontakta oss.
+            </li>
+          </ul>
+          <p className="text-gray-600 leading-relaxed mb-3">
+            Så här ändrar eller återkallar du ditt samtycke:
+          </p>
+          <ol className="list-decimal pl-6 text-gray-600 space-y-2 mb-3">
+            <li>
+              Klicka på &quot;Hantera cookies&quot; i sidfoten eller i cookie&#8209;bannern på
+              webbplatsen för att öppna cookie&#8209;inställningarna och ändra dina val.
+            </li>
+            <li>
+              Du kan också skicka en begäran via e&#8209;post till{' '}
+              <a href="mailto:info@projektgarantiab.se" className="text-primary hover:underline">
+                info@projektgarantiab.se
+              </a>
+              . Vi bekräftar mottagandet och genomför ändringarna så snart som möjligt och senast
+              inom 30 dagar.
+            </li>
+          </ol>
+          <p className="text-gray-600 leading-relaxed">
+            När du begär borttagning av cookies kommer vi att radera motsvarande cookies från din
+            webbläsare och stoppa framtida datainsamling för de berörda kategorierna. Observera att
+            vissa funktioner på webbplatsen kan påverkas om nödvändiga cookies tas bort.
+          </p>
+        </section>
+
+        {/* 6. Personuppgiftsbiträden och överföringar */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">6. Personuppgiftsbiträden och överföringar</h2>
+          <p className="text-gray-600 leading-relaxed mb-3">
+            För att driva och drifta webbplatsen och våra tjänster använder vi externa leverantörer
+            (personuppgiftsbiträden) som behandlar personuppgifter för vår räkning. Nedan anges
+            exempel på kategorier av biträden och deras syften.
+          </p>
+          <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-3">
+            <li>
+              <strong>E&#8209;post och kommunikation</strong> (t.ex. e&#8209;postleverantör) –
+              hanterar utskick och leverans av meddelanden.
+            </li>
+            <li>
+              <strong>Hosting och driftsättning</strong> (t.ex. webbhotell eller molnleverantör) –
+              lagrar webbplatsdata och loggar.
+            </li>
+            <li>
+              <strong>Analys och prestanda</strong> (t.ex. Google Analytics) – samlar anonymiserade
+              statistikdata om webbplatsanvändning (endast om du godkänner analyscookies).
+            </li>
+            <li>
+              <strong>Karttjänster</strong> (t.ex. Google Maps) – tillhandahåller inbäddade kartor
+              när du godkänner kartrelaterade cookies.
+            </li>
+          </ul>
+          <p className="text-gray-600 leading-relaxed">
+            I vissa fall kan dessa leverantörer behandla eller överföra data utanför EU/EES. I
+            sådana fall använder vi lämpliga skyddsåtgärder, t.ex. standardavtalsklausuler (SCC)
+            eller andra godkända mekanismer för dataöverföring, i enlighet med GDPR kapitel V. Vi
+            ingår personuppgiftsbiträdesavtal med samtliga biträden för att säkerställa att dina
+            uppgifter hanteras i enlighet med gällande dataskyddslagstiftning.
           </p>
         </section>
 
