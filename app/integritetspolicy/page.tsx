@@ -20,7 +20,7 @@ export default function IntegritetspolicyPage() {
             ← Tillbaka till startsidan
           </Link>
           <h1 className="text-3xl sm:text-4xl font-bold">Integritetspolicy &amp; Cookiepolicy</h1>
-          <p className="text-gray-400 mt-2 text-sm">Senast uppdaterad: mars 2026</p>
+          <p className="text-gray-400 mt-2 text-sm">Senast uppdaterad: 2026-03-10</p>
         </div>
       </header>
 
@@ -34,8 +34,7 @@ export default function IntegritetspolicyPage() {
           </p>
           <address className="not-italic bg-gray-50 rounded-xl p-5 text-gray-700 text-sm leading-loose border border-gray-200">
             <strong>Projektgaranti Stockholm AB</strong><br />
-            {/* TODO: Ersätt 559XXXXX-XXXX med faktiskt organisationsnummer innan publicering */}
-            Organisationsnummer: 559XXXXX-XXXX<br />
+            Organisationsnummer: 556717-4395<br />
             Ekerövägen 51, 178 37 Ekerö<br />
             Telefon:{' '}
             <a href="tel:+46707401383" className="text-primary hover:underline">
@@ -201,6 +200,7 @@ export default function IntegritetspolicyPage() {
               <thead>
                 <tr className="bg-gray-100">
                   <th className="text-left py-3 px-4 font-semibold text-gray-700 border border-gray-200">Cookie</th>
+                  <th className="text-left py-3 px-4 font-semibold text-gray-700 border border-gray-200">Innehåll</th>
                   <th className="text-left py-3 px-4 font-semibold text-gray-700 border border-gray-200">Syfte</th>
                   <th className="text-left py-3 px-4 font-semibold text-gray-700 border border-gray-200">Typ</th>
                   <th className="text-left py-3 px-4 font-semibold text-gray-700 border border-gray-200">Varaktighet</th>
@@ -209,24 +209,36 @@ export default function IntegritetspolicyPage() {
               <tbody>
                 <tr>
                   <td className="py-3 px-4 border border-gray-200 font-mono text-xs">cookie_consent</td>
-                  <td className="py-3 px-4 border border-gray-200">Sparar ditt cookiesamtycke</td>
+                  <td className="py-3 px-4 border border-gray-200 font-mono text-xs">
+                    {'{'}status, version, date{'}'}
+                  </td>
+                  <td className="py-3 px-4 border border-gray-200">Sparar ditt val av cookieinställningar (status: accepted/necessary, policyversion, tidpunkt)</td>
                   <td className="py-3 px-4 border border-gray-200">Nödvändig</td>
                   <td className="py-3 px-4 border border-gray-200">365 dagar</td>
                 </tr>
               </tbody>
             </table>
           </div>
+          <p className="text-gray-600 leading-relaxed mb-3">
+            <strong>Inga Google Analytics-cookies används.</strong> Vi använder för närvarande
+            inga spårnings-, analys- eller marknadsföringscookies – dessa kategorier är
+            inaktiverade. Om detta förändras kommer denna policy att uppdateras och du kommer att
+            tillfrågas om samtycke på nytt.
+          </p>
           <p className="text-gray-600 leading-relaxed">
-            Vi använder för närvarande inga spårnings-, analys- eller marknadsföringscookies.
-            Om detta förändras kommer denna policy att uppdateras och du kommer att tillfrågas om
-            samtycke på nytt.
+            Samtycket lagras i cookien <code className="font-mono text-xs bg-gray-100 px-1 rounded">cookie_consent</code> med
+            policyversion och datum, så att vi kan verifiera när och för vilken version samtycke gavs.
           </p>
 
-          <h3 className="text-lg font-semibold text-gray-800 mb-2 mt-4">Hantera cookies</h3>
+          <h3 className="text-lg font-semibold text-gray-800 mb-2 mt-4">Hantera och återkalla samtycke</h3>
           <p className="text-gray-600 leading-relaxed">
             Du kan när som helst ändra eller återkalla ditt cookiesamtycke genom att klicka på{' '}
-            <strong>Hantera cookies</strong> i sidfoten på webbplatsen. Du kan även stänga av
-            cookies i din webbläsares inställningar, men det kan påverka webbplatsens funktionalitet.
+            <strong>Hantera cookies</strong> i sidfoten på webbplatsen – det öppnar
+            cookieinställningarna där du kan justera dina val. Du kan också radera cookien manuellt
+            via din webbläsares inställningar (DevTools → Application → Cookies → ta bort{' '}
+            <code className="font-mono text-xs bg-gray-100 px-1 rounded">cookie_consent</code>),
+            varvid bannern visas igen vid nästa besök. Att stänga av cookies i webbläsarens
+            inställningar kan påverka webbplatsens funktionalitet.
           </p>
         </section>
 

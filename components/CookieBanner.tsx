@@ -281,7 +281,7 @@ export default function CookieBanner() {
                 onClick={() => saveConsent('necessary')}
                 className="flex-1 rounded-lg border-2 border-gray-300 px-4 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
               >
-                Spara mina val
+                Återkalla / Spara val
               </button>
               <button
                 type="button"
