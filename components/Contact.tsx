@@ -97,20 +97,20 @@ export default function Contact() {
     setErrorMsg('')
 
     try {
-      const res = await fetch('https://formspree.io/f/mvzwakag', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          namn: formData.namn,
-          email: formData.email,
-          telefon: formData.telefon,
-          meddelande: formData.meddelande,
-          gdprConsent: formData.gdprConsent,
-        }),
-      })
+  const res = await fetch('https://formspree.io/f/mvzwakag', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      name: formData.namn,
+      email: formData.email,
+      phone: formData.telefon,
+      message: formData.meddelande,
+      gdprConsent: formData.gdprConsent,
+    }),
+  })
 
       const data = await res.json().catch(() => null)
 
