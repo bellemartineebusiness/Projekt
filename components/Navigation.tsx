@@ -68,7 +68,7 @@ export default function Navigation() {
           aria-label="Projektgaranti Stockholm AB – Till startsidan"
         >
 <div className="relative h-[90px] w-[340px] sm:w-[380px] lg:w-[420px] overflow-visible">         <Image
-              src="/cool.png"
+              src="/lind.png"
               alt="Projektgaranti Stockholm AB"
               fill
               priority
