@@ -70,8 +70,16 @@ const contactItems = [
   },
 ]
 
+type FormDataType = {
+  namn: string
+  email: string
+  telefon: string
+  meddelande: string
+  gdprConsent: boolean
+}
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormDataType>({
     namn: '',
     email: '',
     telefon: '',
@@ -83,7 +91,7 @@ export default function Contact() {
   const [errorMsg, setErrorMsg] = useState('')
   const consentAccepted = useConsentAccepted()
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setStatus('sending')
     setErrorMsg('')
@@ -91,15 +99,28 @@ export default function Contact() {
     try {
       const res = await fetch('https://formspree.io/f/xjgawvzy', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          namn: formData.namn,
+          email: formData.email,
+          telefon: formData.telefon,
+          meddelande: formData.meddelande,
+          gdprConsent: formData.gdprConsent,
+        }),
       })
 
-      const data = await res.json()
+      const data = await res.json().catch(() => null)
 
       if (!res.ok) {
         setStatus('error')
-        setErrorMsg(data.error ?? 'Något gick fel. Försök igen.')
+        setErrorMsg(
+          data?.errors?.[0]?.message ||
+            data?.error ||
+            'Något gick fel. Försök igen.'
+        )
         return
       }
 
@@ -120,13 +141,21 @@ export default function Contact() {
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value, type } = e.target
 
     if (type === 'checkbox') {
-      setFormData({ ...formData, [name]: (e.target as HTMLInputElement).checked })
+      setFormData((prev) => ({
+        ...prev,
+        [name]: (e.target as HTMLInputElement).checked,
+      }))
     } else {
-      setFormData({ ...formData, [name]: value })
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }))
     }
   }
 
@@ -146,7 +175,6 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* Left side */}
           <div>
             <h3 className="mb-8 text-2xl font-bold text-gray-800">
               Kontaktinformation
@@ -169,7 +197,9 @@ export default function Contact() {
                       {item.title}
                     </h4>
 
-                    <div className="leading-relaxed text-secondary">{item.content}</div>
+                    <div className="leading-relaxed text-secondary">
+                      {item.content}
+                    </div>
                   </div>
                 )
               })}
@@ -198,6 +228,7 @@ export default function Contact() {
                     </p>
 
                     <button
+                      type="button"
                       onClick={() => window.dispatchEvent(new Event('openCookieSettings'))}
                       className="text-sm text-primary underline transition-colors hover:text-primary-dark"
                     >
@@ -209,7 +240,6 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right side */}
           <div>
             <h3 className="mb-8 text-2xl font-bold text-gray-800">
               Skicka ett meddelande
@@ -230,7 +260,10 @@ export default function Contact() {
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="namn" className="mb-2 block text-sm font-semibold text-gray-700">
+                  <label
+                    htmlFor="namn"
+                    className="mb-2 block text-sm font-semibold text-gray-700"
+                  >
                     Namn <span className="text-primary">*</span>
                   </label>
                   <input
@@ -246,7 +279,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="mb-2 block text-sm font-semibold text-gray-700">
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block text-sm font-semibold text-gray-700"
+                  >
                     E-post <span className="text-primary">*</span>
                   </label>
                   <input
@@ -262,7 +298,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="telefon" className="mb-2 block text-sm font-semibold text-gray-700">
+                  <label
+                    htmlFor="telefon"
+                    className="mb-2 block text-sm font-semibold text-gray-700"
+                  >
                     Telefon
                   </label>
                   <input
@@ -277,7 +316,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="meddelande" className="mb-2 block text-sm font-semibold text-gray-700">
+                  <label
+                    htmlFor="meddelande"
+                    className="mb-2 block text-sm font-semibold text-gray-700"
+                  >
                     Meddelande <span className="text-primary">*</span>
                   </label>
                   <textarea
@@ -303,9 +345,12 @@ export default function Contact() {
                     className="mt-1 h-4 w-4 flex-shrink-0 accent-primary"
                   />
 
-                  <label htmlFor="gdprConsent" className="text-sm leading-relaxed text-gray-600">
-                    Jag godkänner att Projektgaranti Stockholm AB behandlar mina personuppgifter för
-                    att besvara min förfrågan. Läs mer i vår{' '}
+                  <label
+                    htmlFor="gdprConsent"
+                    className="text-sm leading-relaxed text-gray-600"
+                  >
+                    Jag godkänner att Projektgaranti Stockholm AB behandlar mina
+                    personuppgifter för att besvara min förfrågan. Läs mer i vår{' '}
                     <Link
                       href="/integritetspolicy"
                       className="text-primary underline transition-colors hover:text-primary-dark"
