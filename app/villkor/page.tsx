@@ -36,7 +36,7 @@ export default function VillkorPage() {
           <address className="not-italic bg-gray-50 rounded-xl p-5 text-gray-700 text-sm leading-loose border border-gray-200">
             <strong>Projektgaranti Stockholm AB</strong><br />
             {/* TODO: Ersätt 559XXXXX-XXXX med faktiskt organisationsnummer innan publicering */}
-            Organisationsnummer: 559XXXXX-XXXX<br />
+            Organisationsnummer: 556717-4395<br />
             Ekerövägen 51, 178 37 Ekerö<br />
             Telefon:{' '}
             <a href="tel:+46707401383" className="text-primary hover:underline">
