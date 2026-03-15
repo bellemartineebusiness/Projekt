@@ -97,7 +97,7 @@ export default function Contact() {
     setErrorMsg('')
 
     try {
-  const res = await fetch('https://formspree.io/f/mvzwakag', {
+  const res = await fetch('https://formspree.io/f/blabla', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
