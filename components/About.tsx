@@ -1,3 +1,6 @@
+'use client'
+
+import { motion } from "framer-motion"
 import { FaStar, FaHandshake, FaAward } from 'react-icons/fa'
 
 const features = [
@@ -24,7 +27,13 @@ const features = [
 export default function About() {
   return (
     <section id="om-oss" className="bg-white py-12 md:py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 200 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2 }} // ✅ tillbaka som innan
+        viewport={{ once: true }} // ✅ enda fixen
+        className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
+      >
         <div className="mb-10 text-center md:mb-16">
           <h2 className="mb-4 text-2xl font-bold text-gray-800 sm:text-3xl md:text-4xl">
             Om Projektgaranti Stockholm AB
@@ -44,8 +53,12 @@ export default function About() {
             const Icon = feature.icon
 
             return (
-              <div
+              <motion.div
                 key={feature.title}
+                initial={{ opacity: 0, y: 100, scale: 0.8 }} // ✅ tillbaka som innan
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8 }} // ✅ tillbaka
+                viewport={{ once: true }} // ✅ fix
                 className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-8"
               >
                 <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white">
@@ -59,11 +72,11 @@ export default function About() {
                 <p className="leading-relaxed text-secondary">
                   {feature.description}
                 </p>
-              </div>
+              </motion.div>
             )
           })}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

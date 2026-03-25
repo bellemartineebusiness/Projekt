@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from "framer-motion"
 import { FaChevronDown } from 'react-icons/fa'
 import Image from 'next/image'
 
@@ -12,22 +13,35 @@ export default function Hero() {
       const elementTop = el.getBoundingClientRect().top + window.scrollY
       const offsetTop = elementTop - navHeight
 
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth',
-      })
+      window.scrollTo(0, offsetTop)
     }
+  }
+
+  // 🔥 SAMMA ANIMATION-STYLE SOM ABOUT
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
+
+  const item = {
+    hidden: { opacity: 0, y: 100, scale: 0.95 },
+    show: { opacity: 1, y: 0, scale: 1 },
   }
 
   return (
     <section
       id="hem"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden pb-[60px]"
+      className="relative flex h-screen items-center justify-center overflow-hidden"
       style={{
         background:
           'linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #1a1a2e 100%)',
       }}
     >
+      {/* 🔥 Bakgrundsmönster */}
       <div
         className="absolute inset-0 opacity-20"
         style={{
@@ -41,8 +55,14 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
-        <div className="mb-6 sm:mb-8">
+      {/* 🔥 CONTENT */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6"
+      >
+        <motion.div variants={item} className="mb-6 sm:mb-8">
           <Image
             src="/lind.png"
             alt="Projektgaranti Stockholm AB"
@@ -51,23 +71,35 @@ export default function Hero() {
             priority
             className="mx-auto w-52 sm:w-72 md:w-96"
           />
-        </div>
+        </motion.div>
 
-        <h1 className="mb-5 text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        <motion.h1
+          variants={item}
+          className="mb-5 text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
+        >
           Professionell renovering i{' '}
           <span className="text-primary">Stockholmsområdet</span>
-        </h1>
+        </motion.h1>
 
-        <p className="mb-3 text-lg text-gray-300 sm:text-xl md:text-2xl">
+        <motion.p
+          variants={item}
+          className="mb-3 text-lg text-gray-300 sm:text-xl md:text-2xl"
+        >
           Med garanti och ROT-avdrag
-        </p>
+        </motion.p>
 
-        <p className="mx-auto mb-8 max-w-2xl text-base text-gray-400 sm:mb-10 sm:text-lg">
+        <motion.p
+          variants={item}
+          className="mx-auto mb-8 max-w-2xl text-base text-gray-400 sm:mb-10 sm:text-lg"
+        >
           Erfarna hantverkare för badrum, kök och totalrenovering. Vi levererar
           kvalitet du kan lita på.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
+        <motion.div
+          variants={item}
+          className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4"
+        >
           <button
             onClick={() => scrollToSection('kontakt')}
             className="rounded-lg bg-primary px-8 py-4 text-base font-semibold text-white shadow-lg transition-colors duration-200 hover:bg-primary-dark sm:text-lg"
@@ -81,12 +113,16 @@ export default function Hero() {
           >
             Våra tjänster
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      <button
+      {/* 🔥 PIL */}
+      <motion.button
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 1 }}
         onClick={() => scrollToSection('om-oss')}
-        className="group absolute bottom-24 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center text-white opacity-80 transition-all duration-300 hover:opacity-100"
+        className="group absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center text-white opacity-80 transition-all duration-300 hover:opacity-100"
         aria-label="Scroll down"
       >
         <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/40 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(255,255,255,0.35)]">
@@ -95,7 +131,7 @@ export default function Hero() {
             <FaChevronDown size={16} />
           </div>
         </div>
-      </button>
+      </motion.button>
     </section>
   )
 }

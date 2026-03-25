@@ -1,3 +1,6 @@
+'use client'
+
+import { motion } from "framer-motion"
 import {
   FaCheckCircle,
   FaPercentage,
@@ -35,8 +38,13 @@ const reasons = [
 export default function WhyChooseUs() {
   return (
     <section className="py-12 md:py-20 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+      <motion.div
+        initial={{ opacity: 0, y: 200 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2 }}
+        viewport={{ once: true }} // ✅ FIX
+        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Varför välja oss?
@@ -54,8 +62,12 @@ export default function WhyChooseUs() {
             const Icon = reason.icon
 
             return (
-              <div
+              <motion.div
                 key={reason.title}
+                initial={{ opacity: 0, y: 100, scale: 0.8 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }} // ✅ FIX
                 className="bg-white rounded-xl p-6 md:p-7 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 group hover:-translate-y-1 text-center"
               >
                 <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-105 transition-transform duration-300">
@@ -69,12 +81,11 @@ export default function WhyChooseUs() {
                 <p className="text-secondary leading-relaxed">
                   {reason.description}
                 </p>
-              </div>
+              </motion.div>
             )
           })}
         </div>
-
-      </div>
+      </motion.div>
     </section>
   )
 }

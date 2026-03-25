@@ -1,3 +1,6 @@
+'use client'
+
+import { motion } from "framer-motion"
 import {
   FaBath,
   FaUtensils,
@@ -43,7 +46,13 @@ const services = [
 export default function Services() {
   return (
     <section id="tjanster" className="bg-gray-50 py-12 md:py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 200 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2 }}
+        viewport={{ once: true }} // ✅ FIX
+        className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
+      >
         <div className="mb-10 text-center md:mb-16">
           <h2 className="mb-4 text-2xl font-bold text-gray-800 sm:text-3xl md:text-4xl">
             Våra tjänster
@@ -61,8 +70,12 @@ export default function Services() {
             const Icon = service.icon
 
             return (
-              <div
+              <motion.div
                 key={service.title}
+                initial={{ opacity: 0, y: 100, scale: 0.8 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }} // ✅ FIX
                 className="group rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7"
               >
                 <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-sm transition-transform duration-300 group-hover:scale-105">
@@ -76,11 +89,11 @@ export default function Services() {
                 <p className="leading-relaxed text-secondary">
                   {service.description}
                 </p>
-              </div>
+              </motion.div>
             )
           })}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
