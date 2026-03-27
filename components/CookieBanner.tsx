@@ -310,9 +310,7 @@ export default function CookieBanner() {
               <div className="flex-1">
                 <p className="mb-1 text-base font-semibold">🍪 Vi använder cookies</p>
                 <p className="text-sm leading-relaxed text-gray-300">
-                  Vi använder nödvändiga cookies för att sidan ska fungera. Med ditt samtycke kan vi
-                  även använda analys- och marknadsföringscookies för att förbättra upplevelsen. Läs
-                  mer i vår{' '}
+                  För att vår webbplats ska fungera använder vi nödvändiga cookies. Med ditt samtycke kan vi också använda cookies för analys och marknadsföring, vilket hjälper oss att förbättra din upplevelse. Läs mer i vår{' '}
                   <Link
                     href="/integritetspolicy"
                     className="text-primary-light underline transition-colors hover:text-white"
