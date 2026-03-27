@@ -8,19 +8,19 @@ const features = [
     icon: FaStar,
     title: 'Kvalitet',
     description:
-      'Vi använder enbart material av högsta kvalitet och lever upp till branschens krav.',
+      'Vi använder endast material av högsta standard och följer branschens krav.',
   },
   {
     icon: FaHandshake,
     title: 'Pålitlighet',
     description:
-      'Vi håller det vi lovar – tidsplaner, budgetar och kvalitetsstandarder.',
+      'Vi håller alltid det vi lovar, både vad gäller tidsplaner, budget och resultat.',
   },
   {
     icon: FaAward,
     title: 'Erfarenhet',
     description:
-      'Över 10 år i branschen ger oss erfarenheten att hantera alla typer av projekt.',
+      'Med över 10 års erfarenhet hanterar vi alla typer av projekt smidigt och professionellt.',
   },
 ]
 
@@ -42,9 +42,7 @@ export default function About() {
           <div className="mx-auto mb-6 h-1 w-16 bg-primary" />
 
           <p className="mx-auto max-w-3xl text-base leading-relaxed text-secondary sm:text-lg">
-            Vi är ett etablerat byggföretag i Stockholmsområdet med lång erfarenhet av
-            renovering och ombyggnation. Våra erfarna hantverkare levererar kvalitetsarbete
-            med garanti. Vi hjälper dig från planering till färdigt projekt.
+          Projektgaranti Stockholm AB är ett etablerat byggföretag i Stockholmsområdet med lång erfarenhet av renovering och ombyggnation. Våra skickliga hantverkare säkerställer kvalitetsarbete med garanti och stödjer dig hela vägen – från planering till färdigt projekt.
           </p>
         </div>
 

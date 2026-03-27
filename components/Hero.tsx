@@ -85,15 +85,14 @@ export default function Hero() {
           variants={item}
           className="mb-3 text-lg text-gray-300 sm:text-xl md:text-2xl"
         >
-          Med garanti och ROT-avdrag
+         Med garanti och ROT-avdrag
         </motion.p>
 
         <motion.p
           variants={item}
           className="mx-auto mb-8 max-w-2xl text-base text-gray-400 sm:mb-10 sm:text-lg"
         >
-          Erfarna hantverkare för badrum, kök och totalrenovering. Vi levererar
-          kvalitet du kan lita på.
+          Vi erbjuder erfarna hantverkare för badrum, kök och totalrenoveringar, och levererar alltid kvalitet du kan lita på.
         </motion.p>
 
         <motion.div
