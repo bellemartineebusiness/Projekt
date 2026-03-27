@@ -44,13 +44,15 @@ const services = [
 ]
 
 export default function Services() {
+  const smoothEase = [0.22, 1, 0.36, 1] as const
+
   return (
     <section id="tjanster" className="bg-gray-50 py-12 md:py-20">
       <motion.div
-        initial={{ opacity: 0, y: 200 }}
+        initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2 }}
-        viewport={{ once: true }} // ✅ FIX
+        transition={{ duration: 0.85, ease: smoothEase }}
+        viewport={{ once: true, amount: 0.2 }}
         className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
       >
         <div className="mb-10 text-center md:mb-16">
@@ -72,11 +74,13 @@ export default function Services() {
             return (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 100, scale: 0.8 }}
+                initial={{ opacity: 0, y: 40, scale: 0.96 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }} // ✅ FIX
-                className="group rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7"
+                whileHover={{ y: -6, scale: 1.015 }}
+                whileTap={{ scale: 0.992 }}
+                transition={{ type: 'spring', stiffness: 120, damping: 16, mass: 0.8 }}
+                viewport={{ once: true, amount: 0.25 }}
+                className="group rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md md:p-7"
               >
                 <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-sm transition-transform duration-300 group-hover:scale-105">
                   <Icon size={24} />

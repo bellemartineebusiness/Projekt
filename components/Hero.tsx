@@ -5,6 +5,8 @@ import { FaChevronDown } from 'react-icons/fa'
 import Image from 'next/image'
 
 export default function Hero() {
+  const smoothEase = [0.22, 1, 0.36, 1] as const
+
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id)
 
@@ -22,14 +24,20 @@ export default function Hero() {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.2,
+        delayChildren: 0.1,
+        staggerChildren: 0.12,
       },
     },
   }
 
   const item = {
-    hidden: { opacity: 0, y: 100, scale: 0.95 },
-    show: { opacity: 1, y: 0, scale: 1 },
+    hidden: { opacity: 0, y: 64, scale: 0.97 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { type: 'spring' as const, stiffness: 82, damping: 16, mass: 0.75 },
+    },
   }
 
   return (
@@ -62,7 +70,7 @@ export default function Hero() {
         animate="show"
         className="relative z-10 mx-auto w-full max-w-5xl px-4 text-center sm:px-6"
       >
-        <motion.div variants={item} className="mb-6 sm:mb-8">
+        <motion.div variants={item} className="-mt-6 mb-6 sm:-mt-7 sm:mb-8">
           <Image
             src="/lind.png"
             alt="Projektgaranti Stockholm AB"
@@ -99,19 +107,25 @@ export default function Hero() {
           variants={item}
           className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4"
         >
-          <button
+          <motion.button
             onClick={() => scrollToSection('kontakt')}
-            className="w-full rounded-lg bg-primary px-8 py-4 text-base font-semibold text-white shadow-lg transition-colors duration-200 hover:bg-primary-dark sm:w-auto sm:text-lg"
+            whileHover={{ y: -2, scale: 1.01 }}
+            whileTap={{ scale: 0.985 }}
+            transition={{ type: 'spring', stiffness: 360, damping: 22 }}
+            className="w-full rounded-lg bg-primary px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-250 ease-out hover:-translate-y-px hover:bg-primary-dark active:scale-[0.99] sm:w-auto sm:text-lg"
           >
             Kontakta oss
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
             onClick={() => scrollToSection('tjanster')}
-            className="w-full rounded-lg border-2 border-white bg-transparent px-8 py-4 text-base font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-gray-900 sm:w-auto sm:text-lg"
+            whileHover={{ y: -2, scale: 1.01 }}
+            whileTap={{ scale: 0.985 }}
+            transition={{ type: 'spring', stiffness: 360, damping: 22 }}
+            className="w-full rounded-lg border-2 border-white bg-transparent px-8 py-4 text-base font-semibold text-white transition-all duration-250 ease-out hover:-translate-y-px hover:bg-white hover:text-gray-900 active:scale-[0.99] sm:w-auto sm:text-lg"
           >
             Våra tjänster
-          </button>
+          </motion.button>
         </motion.div>
       </motion.div>
 
@@ -119,9 +133,11 @@ export default function Hero() {
       <motion.button
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1 }}
+        transition={{ duration: 0.9, delay: 0.9, ease: smoothEase }}
         onClick={() => scrollToSection('om-oss')}
         className="group absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 items-center justify-center text-white opacity-80 transition-all duration-300 hover:opacity-100 sm:flex"
+        whileHover={{ y: 2 }}
+        whileTap={{ scale: 0.97 }}
         aria-label="Scroll down"
       >
         <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/40 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(255,255,255,0.35)]">

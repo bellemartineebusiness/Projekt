@@ -36,13 +36,15 @@ const reasons = [
 ]
 
 export default function WhyChooseUs() {
+  const smoothEase = [0.22, 1, 0.36, 1] as const
+
   return (
     <section className="py-12 md:py-20 bg-gray-50">
       <motion.div
-        initial={{ opacity: 0, y: 200 }}
+        initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2 }}
-        viewport={{ once: true }} // ✅ FIX
+        transition={{ duration: 0.85, ease: smoothEase }}
+        viewport={{ once: true, amount: 0.2 }}
         className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="text-center mb-10 md:mb-16">
@@ -64,11 +66,13 @@ export default function WhyChooseUs() {
             return (
               <motion.div
                 key={reason.title}
-                initial={{ opacity: 0, y: 100, scale: 0.8 }}
+                initial={{ opacity: 0, y: 40, scale: 0.96 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }} // ✅ FIX
-                className="bg-white rounded-xl p-6 md:p-7 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 group hover:-translate-y-1 text-center"
+                whileHover={{ y: -6, scale: 1.015 }}
+                whileTap={{ scale: 0.992 }}
+                transition={{ type: 'spring', stiffness: 120, damping: 16, mass: 0.8 }}
+                viewport={{ once: true, amount: 0.25 }}
+                className="bg-white rounded-xl border border-gray-100 p-6 text-center shadow-sm transition-shadow duration-300 hover:shadow-md md:p-7"
               >
                 <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-105 transition-transform duration-300">
                   <Icon className="text-white" size={26} />

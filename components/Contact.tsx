@@ -74,6 +74,8 @@ type FormDataType = {
 }
 
 export default function Contact() {
+  const smoothEase = [0.22, 1, 0.36, 1] as const
+
   const [formData, setFormData] = useState<FormDataType>({
     namn: '',
     email: '',
@@ -143,10 +145,10 @@ export default function Contact() {
   return (
     <section id="kontakt" className="bg-white py-12 md:py-20">
       <motion.div
-        initial={{ opacity: 0, y: 200 }}
+        initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2 }}
-        viewport={{ once: true }} // ✅ FIX
+        transition={{ duration: 0.85, ease: smoothEase }}
+        viewport={{ once: true, amount: 0.2 }}
         className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
       >
         {/* HEADER */}
@@ -178,11 +180,13 @@ export default function Contact() {
                 return (
                   <motion.div
                     key={item.title}
-                    initial={{ opacity: 0, y: 100, scale: 0.8 }}
+                    initial={{ opacity: 0, y: 40, scale: 0.96 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }} // ✅ FIX
-                    className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300"
+                    whileHover={{ y: -6, scale: 1.015 }}
+                    whileTap={{ scale: 0.992 }}
+                    transition={{ type: 'spring', stiffness: 120, damping: 16, mass: 0.8 }}
+                    viewport={{ once: true, amount: 0.25 }}
+                    className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
                   >
                     <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white">
                       <Icon size={24} />
@@ -203,10 +207,11 @@ export default function Contact() {
 
           {/* RIGHT FORM */}
           <motion.div
-            initial={{ opacity: 0, y: 100, scale: 0.9 }}
+            initial={{ opacity: 0, y: 50, scale: 0.97 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }} // ✅ FIX
+            whileHover={{ y: -4, scale: 1.004 }}
+            transition={{ type: 'spring', stiffness: 115, damping: 16, mass: 0.85 }}
+            viewport={{ once: true, amount: 0.2 }}
             className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm md:p-7"
           >
             <h3 className="mb-6 text-2xl font-bold text-gray-800">

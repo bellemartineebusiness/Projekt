@@ -59,7 +59,7 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm transition-[box-shadow,background-color] duration-300 ease-out ${
         scrolled ? 'shadow-md' : 'shadow-sm'
       }`}
     >
@@ -110,7 +110,7 @@ export default function Navigation() {
         </div>
 
         <button
-          className="rounded-md p-2 text-gray-700 transition-colors hover:text-primary md:hidden"
+          className="rounded-md p-2 text-gray-700 transition-all duration-200 ease-out hover:text-primary active:scale-95 md:hidden"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -118,8 +118,13 @@ export default function Navigation() {
         </button>
       </div>
 
-      {isOpen && (
-        <div className="max-h-[calc(100svh-74px)] overflow-y-auto border-t border-gray-100 bg-white shadow-lg md:hidden sm:max-h-[calc(100svh-92px)]">
+      <div
+        className={`overflow-hidden border-t border-gray-100 bg-white shadow-lg transition-[max-height,opacity,transform] duration-300 ease-out md:hidden sm:max-h-[calc(100svh-92px)] ${
+          isOpen
+            ? 'max-h-[calc(100svh-74px)] translate-y-0 opacity-100'
+            : 'pointer-events-none max-h-0 -translate-y-1 opacity-0'
+        }`}
+      >
           <div className="space-y-2 px-4 py-4">
             {navLinks.map((link) => {
               const id = link.href.replace('#', '')
@@ -138,13 +143,12 @@ export default function Navigation() {
 
             <button
               onClick={() => handleNavClick('#kontakt')}
-              className="mt-2 block w-full rounded-xl bg-primary px-4 py-3 text-center font-bold text-white transition-colors hover:bg-primary-dark"
+              className="mt-2 block w-full rounded-xl bg-primary px-4 py-3 text-center font-bold text-white transition-all duration-200 ease-out hover:bg-primary-dark active:scale-[0.99]"
             >
               Få offert
             </button>
           </div>
-        </div>
-      )}
+      </div>
     </nav>
   )
 }
