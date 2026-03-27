@@ -218,12 +218,13 @@ export default function Contact() {
                 value={formData.namn} onChange={handleChange}
                 className="w-full border p-3 rounded-lg" />
 
-              <input name="email" required placeholder="E-post"
+              <input type="email" name="email" required placeholder="E-post"
                 value={formData.email} onChange={handleChange}
                 className="w-full border p-3 rounded-lg" />
 
               <textarea name="meddelande" required placeholder="Meddelande"
                 value={formData.meddelande} onChange={handleChange}
+                rows={5}
                 className="w-full border p-3 rounded-lg" />
 
               <button className="w-full bg-primary text-white py-3 rounded-lg">

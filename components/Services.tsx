@@ -14,12 +14,12 @@ const services = [
   {
     icon: FaBath,
     title: 'Badrumsrenovering',
-    description: 'Totalrenovering av badrum med moderna lösningar och hög standard.',
+    description: 'Totalrenovering med moderna lösningar och hög standard.',
   },
   {
     icon: FaUtensils,
     title: 'Köksrenovering',
-    description: 'Drömköket med funktionell design och smarta lösningar.',
+    description: 'Skapa ditt drömkök med smarta och funktionella lösningar.',
   },
   {
     icon: FaHome,
@@ -29,17 +29,17 @@ const services = [
   {
     icon: FaPaintRoller,
     title: 'Målning',
-    description: 'Professionell målning invändigt och utvändigt med hög kvalitet.',
+    description: 'Professionell invändig och utvändig målning.',
   },
   {
     icon: FaLayerGroup,
     title: 'Golvläggning',
-    description: 'Trä, klinker, vinyl, alla typer av golv med precision och stil.',
+    description: 'Trä, klinker, vinyl – vi lägger alla typer av golv med precision.',
   },
   {
     icon: FaClipboardList,
     title: 'ROT avdrag & Projektledning',
-    description: 'Vi hjälper dig med ROT avdrag och sköter hela projektledningen.',
+    description: 'Vi sköter hela projektet och hjälper dig med ROT-avdrag.',
   },
 ]
 
@@ -61,7 +61,7 @@ export default function Services() {
           <div className="mx-auto mb-6 h-1 w-16 rounded-full bg-primary" />
 
           <p className="mx-auto max-w-2xl text-base text-secondary sm:text-lg">
-            Vi erbjuder ett brett utbud av renoveringstjänster för att möta dina behov.
+            Vi erbjuder ett brett utbud av renoveringstjänster för både privatpersoner och företag
           </p>
         </div>
 

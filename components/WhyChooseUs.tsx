@@ -13,25 +13,25 @@ const reasons = [
     icon: FaCheckCircle,
     title: 'Kvalitetsgaranti',
     description:
-      'Vi står för vårt arbete med garanti. Är du inte nöjd, åtgärdar vi det.',
+      'Vi står för vårt arbete. Om du inte är nöjd åtgärdar vi det.',
   },
   {
     icon: FaPercentage,
     title: 'ROT-avdrag',
     description:
-      'Vi hjälper dig med ROT-avdrag och hjälper dig spara upp till 50% på arbetskostnaden.',
+      'Spara upp till 50 % på arbetskostnaden.',
   },
   {
     icon: FaHardHat,
     title: 'Erfarna hantverkare',
     description:
-      'Över 10 års erfarenhet i branschen ger dig trygghet i varje projekt.',
+      'Över 10 års erfarenhet ger trygghet i varje projekt.',
   },
   {
     icon: FaMapMarkerAlt,
     title: 'Lokalt i Stockholm',
     description:
-      'Vi finns i Stockholmsområdet och är snabbt på plats när du behöver oss.',
+      'Vi finns nära dig och kan snabbt vara på plats.',
   },
 ]
 

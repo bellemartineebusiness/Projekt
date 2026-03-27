@@ -9,11 +9,11 @@ export default function Hero() {
     const el = document.getElementById(id)
 
     if (el) {
-      const navHeight = 92
+      const navHeight = window.innerWidth < 640 ? 74 : 92
       const elementTop = el.getBoundingClientRect().top + window.scrollY
       const offsetTop = elementTop - navHeight
 
-      window.scrollTo(0, offsetTop)
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' })
     }
   }
 
@@ -35,7 +35,7 @@ export default function Hero() {
   return (
     <section
       id="hem"
-      className="relative flex h-screen items-center justify-center overflow-hidden"
+      className="relative flex min-h-svh items-center justify-center overflow-hidden pt-20 sm:pt-24"
       style={{
         background:
           'linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #1a1a2e 100%)',
@@ -60,7 +60,7 @@ export default function Hero() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6"
+        className="relative z-10 mx-auto w-full max-w-5xl px-4 text-center sm:px-6"
       >
         <motion.div variants={item} className="mb-6 sm:mb-8">
           <Image
@@ -75,7 +75,7 @@ export default function Hero() {
 
         <motion.h1
           variants={item}
-          className="mb-5 text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
+          className="mb-5 text-2xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
         >
           Professionell renovering i{' '}
           <span className="text-primary">Stockholmsområdet</span>
@@ -101,14 +101,14 @@ export default function Hero() {
         >
           <button
             onClick={() => scrollToSection('kontakt')}
-            className="rounded-lg bg-primary px-8 py-4 text-base font-semibold text-white shadow-lg transition-colors duration-200 hover:bg-primary-dark sm:text-lg"
+            className="w-full rounded-lg bg-primary px-8 py-4 text-base font-semibold text-white shadow-lg transition-colors duration-200 hover:bg-primary-dark sm:w-auto sm:text-lg"
           >
             Kontakta oss
           </button>
 
           <button
             onClick={() => scrollToSection('tjanster')}
-            className="rounded-lg border-2 border-white bg-transparent px-8 py-4 text-base font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-gray-900 sm:text-lg"
+            className="w-full rounded-lg border-2 border-white bg-transparent px-8 py-4 text-base font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-gray-900 sm:w-auto sm:text-lg"
           >
             Våra tjänster
           </button>
@@ -121,7 +121,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1 }}
         onClick={() => scrollToSection('om-oss')}
-        className="group absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center text-white opacity-80 transition-all duration-300 hover:opacity-100"
+        className="group absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 items-center justify-center text-white opacity-80 transition-all duration-300 hover:opacity-100 sm:flex"
         aria-label="Scroll down"
       >
         <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/40 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(255,255,255,0.35)]">

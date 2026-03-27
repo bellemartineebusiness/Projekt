@@ -17,6 +17,8 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('hem')
 
+  const getNavHeight = () => (window.innerWidth < 640 ? 74 : 92)
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10)
@@ -44,7 +46,7 @@ export default function Navigation() {
     const el = document.getElementById(id)
 
     if (el) {
-      const navHeight = 92
+      const navHeight = getNavHeight()
       const elementTop = el.getBoundingClientRect().top + window.scrollY
       const offsetTop = elementTop - navHeight
 
@@ -61,13 +63,14 @@ export default function Navigation() {
         scrolled ? 'shadow-md' : 'shadow-sm'
       }`}
     >
-      <div className="flex items-center justify-between h-[92px] px-4 sm:px-6 lg:px-10">
+      <div className="flex h-18.5 items-center justify-between px-4 sm:h-23 sm:px-6 lg:px-10">
         <Link
           href="/"
-          className="flex-shrink-0"
+          className="shrink-0"
           aria-label="Projektgaranti Stockholm AB – Till startsidan"
         >
-<div className="relative h-[90px] w-[340px] sm:w-[380px] lg:w-[420px] overflow-visible">         <Image
+          <div className="relative h-14.5 w-48.75 overflow-visible sm:h-22.5 sm:w-85 lg:w-105">
+            <Image
               src="/lind.png"
               alt="Projektgaranti Stockholm AB"
               fill
@@ -90,7 +93,7 @@ export default function Navigation() {
               >
                 {link.label}
                 <span
-                  className={`absolute left-0 -bottom-2 h-[2px] rounded-full bg-primary transition-all duration-300 ${
+                  className={`absolute left-0 -bottom-2 h-0.5 rounded-full bg-primary transition-all duration-300 ${
                     activeSection === id ? 'w-full' : 'w-0'
                   }`}
                 />
@@ -107,7 +110,7 @@ export default function Navigation() {
         </div>
 
         <button
-          className="md:hidden text-gray-700 transition-colors hover:text-primary"
+          className="rounded-md p-2 text-gray-700 transition-colors hover:text-primary md:hidden"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -116,7 +119,7 @@ export default function Navigation() {
       </div>
 
       {isOpen && (
-        <div className="border-t border-gray-100 bg-white shadow-lg md:hidden">
+        <div className="max-h-[calc(100svh-74px)] overflow-y-auto border-t border-gray-100 bg-white shadow-lg md:hidden sm:max-h-[calc(100svh-92px)]">
           <div className="space-y-2 px-4 py-4">
             {navLinks.map((link) => {
               const id = link.href.replace('#', '')

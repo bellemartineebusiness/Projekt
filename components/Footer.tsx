@@ -40,7 +40,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:info@projektgarantiab.se"
-                  className="inline-flex items-center gap-3 text-gray-400 hover:text-primary transition-colors text-sm"
+                  className="inline-flex items-center gap-3 break-all text-sm text-gray-400 transition-colors hover:text-primary"
                 >
                   <FaEnvelope size={14} />
                   info@projektgarantiab.se
@@ -48,7 +48,7 @@ export default function Footer() {
               </li>
               <li>
                 <div className="inline-flex items-start gap-3 text-gray-400 text-sm">
-                  <FaMapMarkerAlt size={14} className="mt-0.5 flex-shrink-0" />
+                  <FaMapMarkerAlt size={14} className="mt-0.5 shrink-0" />
                   <span>Ekerövägen 51, 178 37 Ekerö</span>
                 </div>
               </li>
@@ -69,12 +69,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-sm">
+        <div className="flex flex-col items-center justify-between gap-3 border-t border-gray-700 pt-6 text-sm text-gray-500 sm:flex-row">
           <div className="text-center sm:text-left">
             <p>© 2026 Projektgaranti Stockholm AB. Alla rättigheter förbehållna.</p>
-            <p className="mt-1">Org.nr: 556717-4395 &nbsp;|&nbsp; F-skattsedel &nbsp;|&nbsp;  ROT-tillstånd</p>
+            <p className="mt-1 text-xs sm:text-sm">Org.nr: 556717-4395 &nbsp;|&nbsp; F-skattsedel &nbsp;|&nbsp; ROT-tillstånd</p>
           </div>
-          <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-end">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:justify-end">
             <Link
               href="/villkor"
               className="hover:text-gray-300 transition-colors underline underline-offset-2"
