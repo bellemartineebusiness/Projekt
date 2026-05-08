@@ -43,7 +43,7 @@ export default function Hero() {
   return (
     <section
       id="hem"
-      className="relative flex min-h-svh items-center justify-center overflow-hidden pt-20 sm:pt-24"
+      className="relative flex min-h-svh items-center justify-center overflow-hidden pt-20 pb-24 sm:pt-24 sm:pb-28"
       style={{
         background:
           'linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #1a1a2e 100%)',
